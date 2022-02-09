@@ -29,7 +29,7 @@
               </router-link>
             </li>
           </template>
-          <template v-if="!isLoggedIn">
+          <template v-if="isAnonymous">
             <li class="nav-item">
               <router-link class="nav-link" :to="{'name':'login'}" active-class="active">
                  Авторизация
@@ -49,6 +49,7 @@
 
 <script>
 import {mapState} from "vuex";
+import {getterTypes} from "@/store/modules/Auth";
 
 export default {
   name: "Mcv-TopBar",
@@ -56,7 +57,10 @@ export default {
     ...mapState({
       currentUser: state => state.Auth.currentUser,
       isLoggedIn: state => state.Auth.isLoggedIn
-    })
+    }),
+    currentUser(){return this.$store.getters[getterTypes.currentUser]} ,
+    isLoggedIn(){return this.$store.getters[getterTypes.isLoggedIn]},
+    isAnonymous(){return this.$store.getters[getterTypes.isAnonymous]}
   }
 }
 </script>
