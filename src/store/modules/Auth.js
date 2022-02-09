@@ -15,6 +15,19 @@ export const mutationsTypes={
 	loginSuccess:'[Auth] loginSuccess',
 	loginFailed:'[Auth] loginFailed'
 }
+export const getterTypes ={
+	currentUser:'[Auth] currentUser',
+	isLoggedIn : "[Auth] isLoggedIn",
+	isAnonymous: '[Auth] isAnonymous'
+}
+const getters = {
+  [getterTypes.currentUser]: state=>{return state.currentUser
+  },
+	[getterTypes.isLoggedIn]:state=>{return Boolean(state.isLoggedIn)
+	},
+	[getterTypes.isAnonymous]:state=>{return state.isLoggedIn ===false}
+
+}
 export const actionTypes = {
 	register:'[Auth] register',
 	login:'[Auth] login'
@@ -30,7 +43,7 @@ const mutations = {
 		state.isLoggedIn = true
 		state.validationError = null
 	},
-	[mutationsTypes.registerSuccess](state,payload){
+	[mutationsTypes.registerFailed](state,payload){
 		state.isSubmitting = false
 		state.validationError = payload
 	},
@@ -69,9 +82,9 @@ const  actions = {
 		return new Promise(resolve => {
 			context.commit(mutationsTypes.loginStart)
 			authApi
-				.register(credentials).
+				.login(credentials).
 			then(response=>{
-				setItem('accessKey',response.data.user.token)
+				setItem('accessToken',response.data.user.token)
 				context.commit(mutationsTypes.loginSuccess,response.data.user)
 				resolve(response.data.user)
 			})
@@ -83,5 +96,5 @@ const  actions = {
 }
 
 export default {
-	state,mutations,actions
+	state,mutations,actions,getters
 }

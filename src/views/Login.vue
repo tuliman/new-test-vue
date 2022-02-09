@@ -25,8 +25,11 @@
 </template>
 
 <script>
+
+
 import McvValidationErrors from "@/components/ValidationErrors";
 import {actionTypes} from "@/store/modules/Auth";
+
 export default {
   name: "mcv-registration",
   components: {McvValidationErrors},
@@ -42,7 +45,12 @@ export default {
     },
     validationErrors(){
       return this.$store.state.Auth.validationError
-    }
+    },
+    // можно использовать mapState из Vuex
+    // ...mapState({
+    //   isSubmitting : state => state.Auth.isSubmitting,
+    //   validationErrors:state => state.Auth.validationError
+    // })
   },
   methods:{
     onSubmit(){

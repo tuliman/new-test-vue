@@ -1,23 +1,20 @@
 <template>
   <div id="app">
+    <McvTopBar></McvTopBar>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-export default {
+import McvTopBar from "@/views/TopBar";
 
+export default {
+  name : 'McvApp',
+  components: {McvTopBar},
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
