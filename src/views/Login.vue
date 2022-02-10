@@ -58,7 +58,7 @@ export default {
       this.$store.dispatch(actionTypes.login,{email:this.email,password:this.password})
           .then(user=>{
             console.log(user)
-            this.$router.push({name:'Home'})
+            this.$router.push({name:''})
           })
     }
   }

@@ -3,6 +3,7 @@ import {setItem} from "@/helper/persistensStorage";
 
 const state ={
 	isSubmitting:false,
+	isLoading:false,
 	currentUser:null,
 	validationError:null,
 	isLoggedIn:null
@@ -11,9 +12,14 @@ export const mutationsTypes={
 	registerStart:'[Auth] registerStart',
 	registerSuccess:'[Auth] registerSuccess',
 	registerFailed:'[Auth] registerFailed',
+
 	loginStart:'[Auth] loginStart',
 	loginSuccess:'[Auth] loginSuccess',
-	loginFailed:'[Auth] loginFailed'
+	loginFailed:'[Auth] loginFailed',
+
+	getCurrentUserStart:'[Auth] getCurrentUserStart',
+	getCurrentUserSuccess:'[Auth] getCurrentUserSuccess',
+	getCurrentUserFailed:'[Auth] getCurrentUserFailed'
 }
 export const getterTypes ={
 	currentUser:'[Auth] currentUser',
@@ -30,7 +36,8 @@ const getters = {
 }
 export const actionTypes = {
 	register:'[Auth] register',
-	login:'[Auth] login'
+	login:'[Auth] login',
+	getCurrentUser:'[Auth getCurrentUser]'
 }
 const mutations = {
 	[mutationsTypes.registerStart](state){
@@ -59,6 +66,19 @@ const mutations = {
 	[mutationsTypes.loginFailed](state,payload){
 		state.isSubmitting = false
 		state.validationError = payload
+	},
+	[mutationsTypes.getCurrentUserStart](state){
+		state.isLoading = true
+	},
+	[mutationsTypes.getCurrentUserSuccess](state,payload){
+		state.isLoading = false
+		state.currentUser =payload
+		state.isLoggedIn = true
+	},
+	[mutationsTypes.getCurrentUserFailed](state){
+		state.isLoggedIn = false
+		state.currentUser = null
+		state.isLoading = false
 	}
 }
 const  actions = {
@@ -90,6 +110,20 @@ const  actions = {
 			})
 				.catch(result=>{
 					context.commit(mutationsTypes.loginFailed,result.response.data.errors)
+				})
+		})
+	},
+	[actionTypes.getCurrentUser](context,credentials){
+		return new Promise(resolve => {
+			context.commit(mutationsTypes.getCurrentUserStart)
+			authApi
+				.getCurrentUser(credentials).
+			then(response=>{
+				context.commit(mutationsTypes.getCurrentUserSuccess,response.data.user)
+				resolve(response.data.user)
+			})
+				.catch(()=>{
+					context.commit(mutationsTypes.getCurrentUserFailed)
 				})
 		})
 	}

@@ -6,7 +6,7 @@
         <ul class="nav navbar-nav pull-xs-right">
 
           <template v-if="isLoggedIn">
-            <li class="nav-item"><router-link active-class="active" :to="{'name':'Home'}">
+            <li class="nav-item"><router-link active-class="active" :to="{'name':'globalFeed'}">
               Domoi
             </router-link>
             </li>
@@ -48,15 +48,22 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapState,mapGetters} from "vuex";
 import {getterTypes} from "@/store/modules/Auth";
 
 export default {
   name: "Mcv-TopBar",
   computed:{
+    //mapState - для работы с экшанами
     ...mapState({
       currentUser: state => state.Auth.currentUser,
       isLoggedIn: state => state.Auth.isLoggedIn
+    }),
+    //mapGetters для работы  с геттерами vuex
+    ...mapGetters({
+      currentUser:  getterTypes.currentUser,
+      isLoggedIn:getterTypes.isLoggedIn,
+      isAnonymous:getterTypes.isAnonymous
     }),
     currentUser(){return this.$store.getters[getterTypes.currentUser]} ,
     isLoggedIn(){return this.$store.getters[getterTypes.isLoggedIn]},

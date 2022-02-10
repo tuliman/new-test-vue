@@ -1,10 +1,10 @@
 import {createRouter,createWebHistory} from "vue-router";
-import App from "@/App";
 import Registration from "@/views/Registration";
 import Login from "@/views/Login";
+import GlobalFeed from "@/views/GlobalFeed";
 
 const  routes =[
-	{path:'/',name:'Home',component:App},
+	{path:'/',name:'globalFeed',component:GlobalFeed},
 	{path:'/register',name:'register',component:Registration},
 	{path: '/login',name: 'login',component: Login},
 	{path: '/create-article',name: 'createArticle',component: Login},
