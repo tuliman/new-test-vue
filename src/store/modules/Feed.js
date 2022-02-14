@@ -34,7 +34,8 @@ const actions = {
 		return new Promise(resolve => {
 			context.commit(mutationsTypes.getFeedStart)
 			feed.getFeed(apiUrl).then(response =>{
-				context.commit(mutationsTypes.getFeedSuccess,response.data)
+				console.log(response.data)
+				context.commit(mutationsTypes.getFeedSuccess,response.data.articles)
 				resolve(response.data)
 			})
 				.catch(()=>{

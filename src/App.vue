@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="">
     <McvTopBar></McvTopBar>
     <router-view></router-view>
   </div>
