@@ -7,7 +7,6 @@
           <p class ='text-xs-center' >
             <router-link :to="{name:'login'}">Войти в акаунт</router-link>
           </p>
-          Ошибки регистации
           <McvValidationErrors v-if="validationErrors" :validationErrors="validationErrors">
           </McvValidationErrors>
           <form @submit.prevent="onSubmit">
@@ -50,7 +49,6 @@ export default {
   },
   methods:{
     onSubmit(){
-      console.log('Отправлено')
       this.$store.dispatch(actionTypes.register,{email:this.email,password:this.password,username:this.username})
           .then(user=>{
             console.log(user)

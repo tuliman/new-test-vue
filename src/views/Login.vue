@@ -5,9 +5,8 @@
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center"> Войти</h1>
           <p class ='text-xs-center' >
-            <router-link :to="{name:'register'}">Войти в акаунт</router-link>
+            <router-link :to="{name:'register'}">Зарегистрироваться</router-link>
           </p>
-          Ошибки Авторизации
           <McvValidationErrors v-if="validationErrors" :validationErrors="validationErrors">
           </McvValidationErrors>
           <form @submit.prevent="onSubmit">
@@ -58,7 +57,7 @@ export default {
       this.$store.dispatch(actionTypes.login,{email:this.email,password:this.password})
           .then(user=>{
             console.log(user)
-            this.$router.push({name:''})
+            this.$router.push({name:'globalFeed'})
           })
     }
   }
