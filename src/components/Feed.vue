@@ -19,9 +19,7 @@
             </router-link>
             <span class="date">{{article.createdAt}}</span>
           </div>
-          <div class="pull-xs-right">
-              Добавить в любимые
-          </div>
+
           <router-link :to="{name:'article',params:{slug:article.slug}}">
             <h1>{{article.title}}</h1>
             <p>{{article.description}}</p>

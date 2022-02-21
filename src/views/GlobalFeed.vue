@@ -9,7 +9,9 @@
             </mcv-feed>
           </div>
           <div class="col-md-3">
-            Popular Tag
+            <div class="pull-xs-right">
+              <PopularTags> </PopularTags>
+          </div>
           </div>
         </div>
     </div>
@@ -18,9 +20,10 @@
 
 <script>
 import McvFeed from "@/components/Feed";
+import PopularTags from "@/components/PopularTags";
 export default {
   name: "Mcv-GlobalFeed",
-  components: {McvFeed},
+  components: {McvFeed,PopularTags},
   data(){
     return{
       apiUrl:'/articles'

@@ -93,7 +93,6 @@ const  actions = {
 				resolve(response.data.user)
 			})
 			.catch(result=>{
-
 				context.commit(mutationsTypes.registerSuccess,result.response.data.errors)
 			})
 		})
