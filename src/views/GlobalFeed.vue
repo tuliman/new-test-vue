@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-  Banner
+  <msv-baner/>
     <div class="container-page">
         <div class="row">
           <div class = 'col-md-9'>
@@ -21,9 +21,10 @@
 <script>
 import McvFeed from "@/components/Feed";
 import PopularTags from "@/components/PopularTags";
+import MsvBaner from "@/components/Baner";
 export default {
   name: "Mcv-GlobalFeed",
-  components: {McvFeed,PopularTags},
+  components: {MsvBaner, McvFeed,PopularTags},
   data(){
     return{
       apiUrl:'/articles'
