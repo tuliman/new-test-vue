@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-if="isLoading">
-      Загрузка
+      <loading></loading>
+      <error-message v-if="error" :message = error ></error-message>
     </div>
     <div v-if="error">
       Ошибки
@@ -39,10 +40,12 @@ import {mapState} from "vuex";
 import Pagination from "@/components/Pagination";
 import {limit} from "@/helper/vars";
 import {stringify,parseUrl} from 'query-string'
+import Loading from "@/components/Loading";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default {
   name: "Mcv-Feed",
-  components: {Pagination},
+  components: {ErrorMessage, Loading, Pagination},
   props:{
     apiUrl:{
       type:String,

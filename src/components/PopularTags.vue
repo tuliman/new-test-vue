@@ -1,8 +1,12 @@
 <template>
   <div>
+    <ErrorMessage v-if="error" :message = error></ErrorMessage>
     <div class="tag-list">
       <router-link class="tag-default tag-pill ng-binding ng-scope"
-                   v-for="tag in popularTags" :key="tag" :to="{name:'tag',params:{'slug':tag}}" > {{tag}}</router-link>
+                   v-for="tag in popularTags"
+                   :key="tag" :to="{name:'tag',params:{'slug':tag}}" >
+        {{tag}}
+      </router-link>
     </div>
   </div>
 </template>
@@ -13,6 +17,7 @@ import {actionTypes} from "@/store/modules/popularTags";
 
 export default {
   name: "McvPopularTags",
+  components: {},
   computed : {
     ...mapState({
       isLoading: state => state.popularTags.isLoading,
