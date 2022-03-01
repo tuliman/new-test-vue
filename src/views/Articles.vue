@@ -33,7 +33,12 @@
       <Loading v-if="isLoading"/>
       <ErrorMessage :message="error" v-if="error"/>
       <div class="row article-content" v-if="article">
-        <div class="col-xs-12"></div>
+        <div class="col-xs-12">
+          <div>
+            <p>{{article.body}}</p>
+          </div>
+          TagList
+        </div>
       </div>
     </div>
   </div>
